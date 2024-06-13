@@ -22,10 +22,6 @@ export default function NewChallenge({ onDone }) {
     setSelectedImage(image);
   }
 
-  function imperativeAnimate(challenge, id) {
-    if (!challenge[id].trim()) return;
-  }
-
   function handleSubmit(event) {
     event.preventDefault();
     const challenge = {
@@ -70,11 +66,13 @@ export default function NewChallenge({ onDone }) {
 
       console.log(invalidElements);
 
-      animate(
-        invalidElements,
-        { x: [-10, 0, 10, 0], borderColor: "#d41111" },
-        { type: "spring", duration: 0.1, delay: stagger(0.03) }
-      );
+      if (invalidElements) {
+        animate(
+          invalidElements,
+          { x: [-10, 0, 10, 0], borderColor: "#d41111" },
+          { type: "spring", duration: 0.1, delay: stagger(0.03) }
+        );
+      }
 
       return;
     }
@@ -144,8 +142,10 @@ export default function NewChallenge({ onDone }) {
             <motion.li
               variants={{
                 hidden: { opacity: 0, scale: 0.5 },
-                visible: { opacity: 1, scale: [0.8, 1.3, 1] },
+                visible: { opacity: 1, scale: [1] },
               }}
+              whileHover={{ scale: 1.2 }}
+              whileTap={{ scale: 0.9 }}
               exit={{ opacity: 1, scale: 1 }}
               key={image.alt}
               onClick={() => handleSelectImage(image)}
@@ -157,9 +157,13 @@ export default function NewChallenge({ onDone }) {
         </motion.ul>
 
         <p className="new-challenge-actions">
-          <button type="button" onClick={onDone}>
+          <motion.button
+            whileHover={{ backgroundColor: "#d41111", color: "#fff" }}
+            type="button"
+            onClick={onDone}
+          >
             Cancel
-          </button>
+          </motion.button>
           <motion.button
             whileHover={{ scale: 1.1 }}
             transition={{ type: "spring", stiffness: 500 }}

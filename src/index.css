@@ -159,6 +159,7 @@ main {
 
 #new-challenge-images li.selected {
   border: 2px solid #0f61ef;
+  scale: 1.2;
 }
 
 #new-challenge-images li img {
