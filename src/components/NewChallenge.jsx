@@ -1,8 +1,8 @@
+import { motion, stagger, useAnimate } from "framer-motion";
 import { useContext, useRef, useState } from "react";
-import { motion, useAnimate, stagger } from "framer-motion";
+import images from "../assets/images.js";
 import { ChallengesContext } from "../store/challenges-context.jsx";
 import Modal from "./Modal.jsx";
-import images from "../assets/images.js";
 
 export default function NewChallenge({ onDone }) {
   const title = useRef();
@@ -63,8 +63,6 @@ export default function NewChallenge({ onDone }) {
               invalid.image ? ".choose-a-image," : ""
             }`.slice(0, -1)
           : null;
-
-      console.log(invalidElements);
 
       if (invalidElements) {
         animate(
@@ -151,7 +149,7 @@ export default function NewChallenge({ onDone }) {
               onClick={() => handleSelectImage(image)}
               className={selectedImage === image ? "selected" : undefined}
             >
-              <img {...image} alt={image.alt} />
+              <img {...image} />
             </motion.li>
           ))}
         </motion.ul>

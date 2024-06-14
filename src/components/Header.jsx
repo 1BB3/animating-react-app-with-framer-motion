@@ -1,9 +1,9 @@
-import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { useState } from "react";
 import NewChallenge from "./NewChallenge.jsx";
 
 export default function Header() {
-  const [isCreatingNewChallenge, setIsCreatingNewChallenge] = useState();
+  const [isCreatingNewChallenge, setIsCreatingNewChallenge] = useState(false);
 
   function handleStartAddNewChallenge() {
     setIsCreatingNewChallenge(true);
